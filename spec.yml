@@ -1,0 +1,14 @@
+status: response.status
+headers: response.headers
+body: response.body
+
+response:
+    resolver: conditional
+    when:
+        - matches: request.url.pathname
+        pattern: '^/?$'
+        use: helloWorld
+        - matches: request.url.pathname
+        pattern: '^/hello-world/?$'
+        use: helloWorld
+    default: notFound
